@@ -87,7 +87,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="rentPrice" layoutX="98.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10.000vnd">
+            <Text fx:id="rentPrice" layoutX="171.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10.000vnd">
                <font>
                   <Font size="20.0" />
                </font>

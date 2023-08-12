@@ -52,9 +52,9 @@ public class PaymentFormHandler {
     @FXML
     void changeSuccessRent(ActionEvent event) {
     	try {
-    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainScene.fxml"));
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/TransactionScreen.fxml"));
     		root=loader.load();
-    		BaseScreenHandler control = loader.getController();
+    		TransactionScreenHandler control = loader.getController();
     		control.setBikeRented(this.bikeCart);
     		
     		stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -30,7 +30,7 @@
                   <Font size="25.0" />
                </font>
             </Text>
-            <Button fx:id="returnBtn" layoutX="356.0" layoutY="335.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="88.0" text="Next" />
+            <Button fx:id="returnBtn" layoutX="356.0" layoutY="335.0" mnemonicParsing="false" onAction="#changeReturnScreen" prefHeight="63.0" prefWidth="88.0" text="Next" />
          </children>
       </Pane>
    </children>
