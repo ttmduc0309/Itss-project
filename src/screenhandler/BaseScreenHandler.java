@@ -18,6 +18,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.bike.Bike;
+import model.bike.StandardBike;
+import model.bike.StandardEBike;
+import model.bike.TwinBike;
 import model.dock.Dock;
 
 public class BaseScreenHandler implements Initializable {
@@ -79,8 +82,8 @@ public class BaseScreenHandler implements Initializable {
 	 
 	 List<Bike> bikeList(Dock dock){
 		 List<Bike> ls = new ArrayList<>();
-		 Bike bike =new Bike();
-		 bike.setId("1");
+		 Bike bike = new StandardBike();
+		 bike.setId(1);
 		 bike.setBarCode("4740312401240712");
 		 bike.setPrice(4000000);
 		 bike.setLicensePlate("4740312401240712");
@@ -88,8 +91,8 @@ public class BaseScreenHandler implements Initializable {
 		 bike.setBikeImg("/image/ebike.jpg");
 		 ls.add(bike);
 		 
-		 bike =new Bike();
-		 bike.setId("2");
+		 bike =new StandardEBike();
+		 bike.setId(2);
 		 bike.setBarCode("4027402-481-284");
 		 bike.setPrice(100000);
 		 bike.setLicensePlate("4740312401240712");
@@ -97,8 +100,8 @@ public class BaseScreenHandler implements Initializable {
 		 bike.setBikeImg("/image/bikeimg.jpg");
 		 ls.add(bike);
 		 
-		 bike =new Bike();
-		 bike.setId("3");
+		 bike =new TwinBike();
+		 bike.setId(3);
 		 bike.setBarCode("047041741");
 		 bike.setPrice(100000);
 		 bike.setLicensePlate("4740312401240712");

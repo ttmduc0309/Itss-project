@@ -1,7 +1,7 @@
 package model.bike;
 
-public class Bike {
-	private String id;
+public abstract class Bike {
+	private int id;
 	private String licensePlate;
 	private String barCode;
 	private boolean isBeingRented;
@@ -9,10 +9,12 @@ public class Bike {
 	private long price;
 	private String BikeImg;
 	
-	public String getId() {
+	public Bike() {}
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getLicensePlate() {
@@ -53,5 +55,6 @@ public class Bike {
 		BikeImg = bikeImg;
 	}
 	
+	public abstract String typeString();
 	
 }

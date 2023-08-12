@@ -64,7 +64,7 @@ public class BikePageHandler {
     	this.bike=bike;
     	Image image = new Image(getClass().getResourceAsStream(bike.getBikeImg()));
     	bikeImg.setImage(image);
-    	bikeID.setText(bike.getId());
+    	bikeID.setText("" + bike.getId());
     	bikeType.setText("" + bike.getTypeId());
     	depoPrice.setText("" + bike.getPrice()/1000 + ".000vnd");
     	plateNum.setText(bike.getLicensePlate());

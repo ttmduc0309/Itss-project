@@ -12,6 +12,8 @@ public class RentalInfo {
 	private Instant rentStartTime;
 	private Instant rentEndTime;
 	
+	public RentalInfo() {}
+	
 	public int getId() {
 		return id;
 	}

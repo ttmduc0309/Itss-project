@@ -7,6 +7,8 @@ public class Card {
 	private String expirationDate;
 	private int balance = 1000000;
 	
+	public Card() {}
+	
 	public Card(String cardHolderName, String cardNumber, String securityCode, String expirationDate, int balance) {
 		this.cardHolderName = cardHolderName;
 		this.cardNumber = cardNumber;
