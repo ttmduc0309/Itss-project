@@ -84,6 +84,7 @@ public class DockPageHandler{
 	                		root=loader.load();
 	                		BikePageHandler control = loader.getController();
 	                		control.setData(this.getTableRow().getItem());
+//	                		System.out.println(this.getTableRow().getItem());
 	                		
 	                		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	                		scene = new Scene(root);
