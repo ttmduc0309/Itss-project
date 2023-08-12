@@ -103,11 +103,12 @@ public class DockPageHandler{
 	}
 	};
     
-    public void showDockName(int dockId) throws SQLException {
+    public void showDockName(int dockId, String dockName) throws SQLException {
     	ArrayList<Bike> bikeListInDock = new ArrayList<Bike>();
     	bikeListInDock = BikeDAO.getListBikeInDock(dockId);
+    	DockName.setText("Dock - " + dockName);
     	ObservableList<Bike> bikeObservableList = FXCollections.observableArrayList(bikeListInDock);
-    	id.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	id.setCellValueFactory(new PropertyValueFactory<>("Id"));
     	licensePlate.setCellValueFactory(new PropertyValueFactory<>("LicensePlate"));
     	barcode.setCellValueFactory(new PropertyValueFactory<>("BarCode"));
     	biketype.setCellValueFactory(new PropertyValueFactory<>("TypeId"));
