@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewDockController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screenhandler.DockPageHandler">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="800.0" style="-fx-background-color: #90EE90;">
          <children>
@@ -24,11 +24,16 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <TextField prefHeight="25.0" prefWidth="539.0">
+            <TextField prefHeight="25.0" prefWidth="480.0">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </TextField>
+            <Button fx:id="rentBtn" mnemonicParsing="false" prefHeight="41.0" prefWidth="77.0" text="Rent">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <Pane layoutX="-1.0" layoutY="110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="800.0">
@@ -37,10 +42,11 @@
                <content>
                   <TableView fx:id="bikeTable" prefHeight="545.0" prefWidth="784.0">
                      <columns>
-                        <TableColumn fx:id="id" prefWidth="172.0" text="BikeID" />
-                        <TableColumn fx:id="barcode" prefWidth="268.0" text="BarCode" />
-                        <TableColumn fx:id="biketype" prefWidth="167.0" text="BikeType" />
-                        <TableColumn fx:id="bikebtn" prefWidth="173.0" text="View this bike" />
+                        <TableColumn fx:id="id" prefWidth="90.0" text="BikeID" />
+                        <TableColumn fx:id="barcode" prefWidth="219.0" text="BarCode" />
+                        <TableColumn fx:id="licensePlate" prefWidth="153.0" text="LicensePlate" />
+                        <TableColumn fx:id="biketype" prefWidth="157.0" text="BikeType" />
+                        <TableColumn fx:id="bikebtn" prefWidth="141.0" text="View this bike" />
                      </columns>
                   </TableView>
                </content>

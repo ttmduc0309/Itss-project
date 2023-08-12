@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BaseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screenhandler.BaseScreenHandler">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="800.0" style="-fx-background-color: #90EE90;">
          <children>
@@ -28,7 +28,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" text="View">
+            <Button fx:id="ViewBtn" mnemonicParsing="false" onAction="#changeToRented" text="View">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>
