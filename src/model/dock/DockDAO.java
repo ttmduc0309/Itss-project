@@ -22,4 +22,15 @@ public class DockDAO {
     	}
     	return docksList;
     }
+	public static int findDockId(String dockName) throws SQLException {
+		int dockId = -1;
+		try (Statement stm = ConnectDatabase.connect().createStatement();
+		         ResultSet result = stm.executeQuery("SELECT id FROM docks WHERE name = '" + dockName + "'")) {
+
+		        if (result.next()) {
+		            dockId = result.getInt("id");
+		        }
+		}
+		return dockId;
+	}
 }
