@@ -1,8 +1,8 @@
-package model.Dock;
+package model.dock;
 
 import java.util.List;
 
-import model.Bike.Bike;
+import model.bike.Bike;
 
 public class Dock {
 	private int dockId;

@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Bike.Bike;
+import model.bike.Bike;
 
 public class PaymentFormHandler {
 

@@ -1,4 +1,4 @@
-package model.Bike;
+package model.bike;
 
 public class Bike {
 	private String id;

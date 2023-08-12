@@ -1,13 +1,12 @@
-package data;
+package model.dock;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-import model.Dock.Dock;
+import data.ConnectDatabase;
 
-public class DockData {
+public class DockDAO {
 	public static ArrayList<Dock> requestData() throws SQLException{
-    	ConnectDatabase.connect();
     	Statement stm = ConnectDatabase.connect().createStatement();
     	ResultSet result = stm.executeQuery("select * from docks");
     	ArrayList<Dock> docksList = new ArrayList<Dock>();

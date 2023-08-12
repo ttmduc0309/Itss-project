@@ -21,9 +21,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Bike.Bike;
-import model.Dock.Dock;
-import data.DockData;
+import model.bike.Bike;
+import model.dock.Dock;
+import model.dock.DockDAO;
 
 public class BaseScreenHandler implements Initializable {
 
@@ -47,7 +47,7 @@ public class BaseScreenHandler implements Initializable {
 	 @Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			try {
-				dockList = new ArrayList<Dock>(DockData.requestData());
+				dockList = new ArrayList<Dock>(DockDAO.requestData());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

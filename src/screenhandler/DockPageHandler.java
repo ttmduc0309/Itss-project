@@ -18,8 +18,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.Bike.Bike;
-import model.Dock.Dock;
+import model.bike.Bike;
+import model.dock.Dock;
 
 public class DockPageHandler{
 	

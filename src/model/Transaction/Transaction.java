@@ -1,4 +1,4 @@
-package model.Transaction;
+package model.transaction;
 
 import java.time.Instant;
 

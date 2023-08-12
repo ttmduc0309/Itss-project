@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Dock.Dock;
+import model.dock.Dock;
 
 public class DockCardHandler  {
 	
