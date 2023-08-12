@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane id="dockPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="204.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screenhandler.DockReturnCardHandler">
+   <children>
+      <ImageView fx:id="DockImg" fitHeight="148.0" fitWidth="141.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/unnamed.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="DockName" layoutX="165.0" layoutY="14.0" text="Dock">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Text fx:id="DockAddress" layoutX="161.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Button fx:id="RtnBtn" layoutX="609.0" layoutY="30.0" mnemonicParsing="false" onAction="#changeScene" prefHeight="41.0" prefWidth="83.0" text="Return Bike" />
+      <Text fx:id="DockArea" layoutX="161.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Area:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fx:id="DockBikeNum" layoutX="162.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of available bikes:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fx:id="DockEmptyPoints" layoutX="162.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The number of empty points:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

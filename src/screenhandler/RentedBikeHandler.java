@@ -47,8 +47,8 @@ public class RentedBikeHandler {
     
 
     @FXML
-    void changeHome(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("/views/MainScene.fxml"));
+    void changeBack(ActionEvent event) throws IOException {
+    	root = FXMLLoader.load(getClass().getResource("/views/ReturnScreen.fxml"));
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -57,6 +57,9 @@ public class RentedBikeHandler {
     
     void setBikeRented(Bike bike) {
     	this.rentedBike=bike;
+    	bikeID.setText(bike.getId());
+    	bikeType.setText("" + bike.getTypeId());
+    	plateNum.setText(bike.getLicensePlate());
     }
 
 }

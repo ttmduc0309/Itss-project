@@ -39,10 +39,27 @@ public class ReturnScreenHandler implements Initializable {
     private Bike bikeRented;
     @FXML
 	private List<Dock> dockList;
+    
+    @FXML
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     void changeRentedBike(ActionEvent event) {
-
+    	try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/RentedBike.fxml"));
+    		root=loader.load();
+    		RentedBikeHandler control = loader.getController();
+    		control.setBikeRented(bikeRented);
+    		
+    		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    		scene = new Scene(root);
+    		stage.setScene(scene);
+    		stage.show();
+    	}catch(IOException e){
+			e.printStackTrace();
+		}
     }
     
     public void setBikeRented(Bike bike) {
@@ -60,9 +77,9 @@ public class ReturnScreenHandler implements Initializable {
 		try {
 			for(int i=0;i<dockList.size();i++) {
 				FXMLLoader fxmlLoader =new FXMLLoader();
-				fxmlLoader.setLocation(getClass().getResource("/views/DockCard.fxml"));
+				fxmlLoader.setLocation(getClass().getResource("/views/DockReturnCard.fxml"));
 				Pane cardBox = fxmlLoader.load();
-				DockCardHandler cardController = fxmlLoader.getController();
+				DockReturnCardHandler cardController = fxmlLoader.getController();
 				cardController.setData(dockList.get(i));
 				cardLayout.getChildren().add(cardBox);
 			}
