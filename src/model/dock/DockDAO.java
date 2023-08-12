@@ -12,11 +12,11 @@ public class DockDAO {
     	ArrayList<Dock> docksList = new ArrayList<Dock>();
     	while(result.next()) {
     		Dock dock = new Dock();
-    		dock.setDockName(result.getString("name"));
-    		dock.setDockAddress(result.getString("address"));
-    		dock.setDockArea(result.getFloat("area"));
-    		dock.setDockNumBike(result.getInt("numOfAvailableBikes"));
-    		dock.setDockEmptyPoints(result.getInt("numOfEmptyPoints"));
+    		dock.setName(result.getString("name"));
+    		dock.setAddress(result.getString("address"));
+    		dock.setArea(result.getFloat("area"));
+    		dock.setNumOfAvailableBikes(result.getInt("numOfAvailableBikes"));
+    		dock.setNumOfEmptyPoints(result.getInt("numOfEmptyPoints"));
     		
     		docksList.add(dock);
     	}

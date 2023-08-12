@@ -76,11 +76,11 @@ public class DockCardHandler  {
 //    	Image image = new Image(getClass().getResourceAsStream(dock.getDockImgSrc()));
 //    	DockImg.setImage(image);
     	
-    	DockName.setText(dock.getDockName());
-    	DockAddress.setText(dock.getDockAddress());
-    	DockArea.setText("" + dock.getDockArea());
+    	DockName.setText(dock.getName());
+    	DockAddress.setText(dock.getAddress());
+    	DockArea.setText("" + dock.getArea());
     	DockBikeNum.setText("The number of available bikes: "+ dock.getNumOfAvailableBikes());
-    	DockEmptyPoints.setText("The number of empty points: "+ dock.getDockEmptyPoints());
+    	DockEmptyPoints.setText("The number of empty points: "+ dock.getNumOfEmptyPoints());
     }
 
 }
