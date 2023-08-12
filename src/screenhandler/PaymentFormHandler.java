@@ -54,6 +54,8 @@ public class PaymentFormHandler {
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainScene.fxml"));
     		root=loader.load();
+    		BaseScreenHandler control = loader.getController();
+    		control.setBikeRented(this.bikeCart);
     		
     		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     		scene = new Scene(root);

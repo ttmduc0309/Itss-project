@@ -2,6 +2,7 @@ package screenhandler;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import data.ConnectDatabase;
@@ -62,12 +63,14 @@ public class BikePageHandler {
     public void setData(Bike bike) {
     	
     	this.bike=bike;
-    	Image image = new Image(getClass().getResourceAsStream(bike.getBikeImg()));
-    	bikeImg.setImage(image);
+//    	Image image = new Image(getClass().getResourceAsStream(bike.getBikeImg()));
+//    	bikeImg.setImage(image);
+    	DecimalFormat formatter = new DecimalFormat("###,###,###");
     	bikeID.setText(bike.getId());
     	bikeType.setText("" + bike.getTypeId());
-    	depoPrice.setText("" + bike.getPrice()/1000 + ".000vnd");
+    	depoPrice.setText("" + formatter.format(bike.getPrice()) + "vnd");
     	plateNum.setText(bike.getLicensePlate());
+    	System.out.println(bike.getTypeId());
     }
     
     @FXML

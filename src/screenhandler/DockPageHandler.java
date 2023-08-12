@@ -1,6 +1,8 @@
 package screenhandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.bike.Bike;
+import model.bike.BikeDAO;
 import model.dock.Dock;
 
 public class DockPageHandler{
@@ -81,6 +84,7 @@ public class DockPageHandler{
 	                		root=loader.load();
 	                		BikePageHandler control = loader.getController();
 	                		control.setData(this.getTableRow().getItem());
+//	                		System.out.println(this.getTableRow().getItem());
 	                		
 	                		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	                		scene = new Scene(root);
@@ -100,17 +104,18 @@ public class DockPageHandler{
 	}
 	};
     
-    public void showDockName(Dock dock) {
-    	this.dock = dock;
-    	this.DockName.setText(this.dock.getDockName());
-    	
-    	list=FXCollections.observableArrayList(this.dock.getBikeList());
-    	id.setCellValueFactory(new PropertyValueFactory<Bike,String>("BikeID"));
-    	licensePlate.setCellValueFactory(new PropertyValueFactory<Bike,String>("LicensePlate"));
-    	barcode.setCellValueFactory(new PropertyValueFactory<Bike,String>("BarCode"));
-    	biketype.setCellValueFactory(new PropertyValueFactory<Bike,String>("BikeType"));
+    public void showDockName(int dockId, String dockName) throws SQLException {
+    	ArrayList<Bike> bikeListInDock = new ArrayList<Bike>();
+    	bikeListInDock = BikeDAO.getListBikeInDock(dockId);
+    	DockName.setText("Dock - " + dockName);
+    	ObservableList<Bike> bikeObservableList = FXCollections.observableArrayList(bikeListInDock);
+    	id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+    	licensePlate.setCellValueFactory(new PropertyValueFactory<>("LicensePlate"));
+    	barcode.setCellValueFactory(new PropertyValueFactory<>("BarCode"));
+    	biketype.setCellValueFactory(new PropertyValueFactory<>("TypeId"));
     	bikebtn.setCellFactory(cellFactory);
-    	bikeTable.setItems(list);
+    	
+    	bikeTable.setItems(bikeObservableList);
     }
     
     @FXML

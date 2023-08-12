@@ -1,6 +1,7 @@
 package screenhandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.dock.Dock;
+import model.dock.DockDAO;
 
 public class DockCardHandler  {
 	
@@ -39,6 +41,7 @@ public class DockCardHandler  {
     @FXML
     private Button viewBtn;
     
+    
     @FXML
     private Stage stage;
     private Scene scene;
@@ -48,12 +51,15 @@ public class DockCardHandler  {
     
 
     @FXML
-    void changeScene(ActionEvent event) {
+    void changeScene(ActionEvent event) throws SQLException {
+    	String dockName = DockName.getText();
+    	int dockId = DockDAO.findDockId(dockName);
+    	System.out.println(dockId);
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewDock.fxml"));
     		root=loader.load();
     		DockPageHandler control = loader.getController();
-    		control.showDockName(dock);
+    		control.showDockName(dockId, dockName);
     		
     		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     		scene = new Scene(root);
@@ -70,11 +76,11 @@ public class DockCardHandler  {
 //    	Image image = new Image(getClass().getResourceAsStream(dock.getDockImgSrc()));
 //    	DockImg.setImage(image);
     	
-    	DockName.setText(dock.getDockName());
-    	DockAddress.setText(dock.getDockAddress());
-    	DockArea.setText("" + dock.getDockArea());
+    	DockName.setText(dock.getName());
+    	DockAddress.setText(dock.getAddress());
+    	DockArea.setText("" + dock.getArea());
     	DockBikeNum.setText("The number of available bikes: "+ dock.getNumOfAvailableBikes());
-    	DockEmptyPoints.setText("The number of empty points: "+ dock.getDockEmptyPoints());
+    	DockEmptyPoints.setText("The number of empty points: "+ dock.getNumOfEmptyPoints());
     }
 
 }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -21,6 +23,19 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
+            <TextField prefHeight="25.0" prefWidth="371.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="ViewBtn" mnemonicParsing="false" onAction="#changeToRented" text="View">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
       <Pane fx:id="pageContainer" layoutY="110.0" prefHeight="493.0" prefWidth="800.0">
