@@ -83,21 +83,21 @@ public class BaseScreenHandler implements Initializable {
 	 List<Dock> dockList(){
 		List<Dock> ls = new ArrayList<>();
 		Dock dock = new Dock();
-		dock.setDockName("Dock1");
-		dock.setDockAddress("Tran Dai Nghia,Ha Noi");
-		dock.setDockArea("100m2");
-		dock.setDockNumBike(3);
-		dock.setDockEmptyPoints(4);
+		dock.setName("Dock1");
+		dock.setAddress("Tran Dai Nghia,Ha Noi");
+		dock.setArea("100m2");
+		dock.setNumOfAvailableBikes(3);
+		dock.setNumOfEmptyPoints(4);
 		dock.setDockImgSrc("/image/unnamed.png");
 		dock.setBikeList(bikeList(dock));
 		ls.add(dock);
 		
 		dock = new Dock();
-		dock.setDockName("Dock2");
-		dock.setDockAddress("Tran Dai Nghia,Ha Noi");
-		dock.setDockArea("100m2");
-		dock.setDockNumBike(3);
-		dock.setDockEmptyPoints(4);
+		dock.setName("Dock2");
+		dock.setAddress("Tran Dai Nghia,Ha Noi");
+		dock.setArea("100m2");
+		dock.setNumOfAvailableBikes(3);
+		dock.setNumOfEmptyPoints(4);
 		dock.setDockImgSrc("/image/unnamed.png");
 		dock.setBikeList(bikeList(dock));
 		ls.add(dock);
@@ -108,29 +108,29 @@ public class BaseScreenHandler implements Initializable {
 	 List<Bike> bikeList(Dock dock){
 		 List<Bike> ls = new ArrayList<>();
 		 Bike bike =new Bike();
-		 bike.setBikeID("1");
+		 bike.setId("1");
 		 bike.setBarCode("4740312401240712");
-		 bike.setPrice(400000);
+		 bike.setPrice(4000000);
 		 bike.setLicensePlate("4740312401240712");
-		 bike.setBikeType(1);
+		 bike.setTypeId(1);
 		 bike.setBikeImg("/image/ebike.jpg");
 		 ls.add(bike);
 		 
 		 bike =new Bike();
-		 bike.setBikeID("2");
+		 bike.setId("2");
 		 bike.setBarCode("4027402-481-284");
 		 bike.setPrice(100000);
 		 bike.setLicensePlate("4740312401240712");
-		 bike.setBikeType(2);
+		 bike.setTypeId(2);
 		 bike.setBikeImg("/image/bikeimg.jpg");
 		 ls.add(bike);
 		 
 		 bike =new Bike();
-		 bike.setBikeID("3");
+		 bike.setId("3");
 		 bike.setBarCode("047041741");
 		 bike.setPrice(100000);
 		 bike.setLicensePlate("4740312401240712");
-		 bike.setBikeType(3);
+		 bike.setTypeId(3);
 		 bike.setBikeImg("/image/bikeimg.jpg");
 		 ls.add(bike);
 		 

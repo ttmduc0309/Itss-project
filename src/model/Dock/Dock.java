@@ -5,40 +5,52 @@ import java.util.List;
 import model.Bike.Bike;
 
 public class Dock {
-	private int dockId;
-	private String dockName;
-	private String dockAddress;
-	private String dockArea;
-	private int dockNumBike;
-	private int dockEmptyPoints;
+	private int id;
+	private String name;
+	private String address;
+	private String area;
+	private int numOfAvailableBikes;
+	private int numOfEmptyPoints;
 	private String dockImgSrc;
 	private List<Bike> bikeList;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
+	public int getNumOfAvailableBikes() {
+		return numOfAvailableBikes;
+	}
+	public void setNumOfAvailableBikes(int numOfAvailableBikes) {
+		this.numOfAvailableBikes = numOfAvailableBikes;
+	}
+	public int getNumOfEmptyPoints() {
+		return numOfEmptyPoints;
+	}
+	public void setNumOfEmptyPoints(int numOfEmptyPoints) {
+		this.numOfEmptyPoints = numOfEmptyPoints;
+	}
 	
-	public String getDockName() {
-		return dockName;
-	}
-	public void setDockName(String dockName) {
-		this.dockName = dockName;
-	}
-	public String getDockAddress() {
-		return dockAddress;
-	}
-	public void setDockAddress(String dockAddress) {
-		this.dockAddress = dockAddress;
-	}
-	public String getDockArea() {
-		return dockArea;
-	}
-	public void setDockArea(String dockArea) {
-		this.dockArea = dockArea;
-	}
-	public int getDockNumBike() {
-		return dockNumBike;
-	}
-	public void setDockNumBike(int dockNumBike) {
-		this.dockNumBike = dockNumBike;
-	}
 	public String getDockImgSrc() {
 		return dockImgSrc;
 	}
@@ -51,12 +63,6 @@ public class Dock {
 	}
 	public void setBikeList(List<Bike> bikeList) {
 		this.bikeList = bikeList;
-	}
-	public int getDockEmptyPoints() {
-		return dockEmptyPoints;
-	}
-	public void setDockEmptyPoints(int dockEmptyPoints) {
-		this.dockEmptyPoints = dockEmptyPoints;
 	}
 	
 }

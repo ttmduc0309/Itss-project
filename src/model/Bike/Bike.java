@@ -1,43 +1,49 @@
 package model.Bike;
-import javax.sql.DataSource;
-
 
 public class Bike {
-	private String BikeID;
-	private String BarCode;
-	private int BikeType;
-	private String LicensePlate;
-	private int price;
+	private String id;
+	private String licensePlate;
+	private String barCode;
+	private boolean isBeingRented;
+	private int typeId;
+	private long price;
 	private String BikeImg;
 	
-	public String getBikeID() {
-		return BikeID;
+	public String getId() {
+		return id;
 	}
-	public void setBikeID(String bikeID) {
-		BikeID = bikeID;
-	}
-	public String getBarCode() {
-		return BarCode;
-	}
-	public void setBarCode(String barCode) {
-		BarCode = barCode;
-	}
-	public int getBikeType() {
-		return BikeType;
-	}
-	public void setBikeType(int bikeType) {
-		BikeType = bikeType;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getLicensePlate() {
-		return LicensePlate;
+		return licensePlate;
 	}
 	public void setLicensePlate(String licensePlate) {
-		LicensePlate = licensePlate;
+		this.licensePlate = licensePlate;
 	}
-	public int getPrice() {
+	public String getBarCode() {
+		return barCode;
+	}
+	public void setBarCode(String barCode) {
+		this.barCode = barCode;
+	}
+	public boolean isBeingRented() {
+		return isBeingRented;
+	}
+	public void setBeingRented(boolean isBeingRented) {
+		this.isBeingRented = isBeingRented;
+	}
+	public int getTypeId() {
+		return typeId;
+	}
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
+	}
+	
+	public long getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 	public String getBikeImg() {
