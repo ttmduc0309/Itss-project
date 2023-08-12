@@ -4,7 +4,7 @@ import java.sql.*;
 public class ConnectDatabase {
 	private static String url = "jdbc:postgresql://localhost/RentalBike";
 	private static String user = "postgres";
-	private static String password = "Dung03062002";
+	private static String password = "Ducchi0204";
 	
 	public static Connection connect() {
 		Connection conn = null;
