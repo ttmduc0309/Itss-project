@@ -10,6 +10,7 @@ import model.bike.*;
 import model.dock.*;
 import model.rentalInfo.*;
 import model.card.Card;
+import model.card.CardValidator;
 import model.transaction.Transaction;
 import subsystem.*;
 
@@ -65,6 +66,11 @@ public class ReturnBikeController {
 	}
 	
 	private void validatePaymentDetails(String holderName, String cardNumber, String cvv, String expirationDate) throws InvalidPaymentDetailsException {
+		CardValidator cardValidator = new CardValidator();
+		cardValidator.validateCardHolderName(holderName);
+		cardValidator.validateCardNumber(cardNumber);
+		cardValidator.validateSecurityCode(cvv);
+		cardValidator.validateExpirationDate(expirationDate);
 		return;
 	}
 	
