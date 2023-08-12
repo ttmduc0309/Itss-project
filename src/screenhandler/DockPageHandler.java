@@ -102,7 +102,7 @@ public class DockPageHandler{
     
     public void showDockName(Dock dock) {
     	this.dock = dock;
-    	this.DockName.setText(this.dock.getName());
+    	this.DockName.setText(this.dock.getDockName());
     	
     	list=FXCollections.observableArrayList(this.dock.getBikeList());
     	id.setCellValueFactory(new PropertyValueFactory<Bike,String>("BikeID"));

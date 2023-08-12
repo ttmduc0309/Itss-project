@@ -67,14 +67,14 @@ public class DockCardHandler  {
     public void setData(Dock dock) 
     {
     	this.dock = dock;
-    	Image image = new Image(getClass().getResourceAsStream(dock.getDockImgSrc()));
-    	DockImg.setImage(image);
+//    	Image image = new Image(getClass().getResourceAsStream(dock.getDockImgSrc()));
+//    	DockImg.setImage(image);
     	
-    	DockName.setText(dock.getName());
-    	DockAddress.setText(dock.getAddress());
-    	DockArea.setText(dock.getArea());
+    	DockName.setText(dock.getDockName());
+    	DockAddress.setText(dock.getDockAddress());
+    	DockArea.setText("" + dock.getDockArea());
     	DockBikeNum.setText("The number of available bikes: "+ dock.getNumOfAvailableBikes());
-    	DockEmptyPoints.setText("The number of empty points: "+ dock.getNumOfEmptyPoints());
+    	DockEmptyPoints.setText("The number of empty points: "+ dock.getDockEmptyPoints());
     }
 
 }

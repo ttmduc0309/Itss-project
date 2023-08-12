@@ -50,7 +50,11 @@ public class Bike {
 		return BikeImg;
 	}
 	public void setBikeImg(String bikeImg) {
-		BikeImg = bikeImg;
+		this.BikeImg = bikeImg;
+	}
+	public void setBikeType(int i) {
+		// TODO Auto-generated method stub
+		this.typeId = i;
 	}
 	
 	
