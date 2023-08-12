@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Dock.Dock;
+import model.dock.Dock;
 
 public class DockCardHandler  {
 	
@@ -72,7 +72,7 @@ public class DockCardHandler  {
     	
     	DockName.setText(dock.getName());
     	DockAddress.setText(dock.getAddress());
-    	DockArea.setText(dock.getArea());
+    	DockArea.setText("%f".formatted(dock.getArea()));
     	DockBikeNum.setText("The number of available bikes: "+ dock.getNumOfAvailableBikes());
     	DockEmptyPoints.setText("The number of empty points: "+ dock.getNumOfEmptyPoints());
     }

@@ -1,2 +1,5 @@
+/db/
 /model/
-/screenhandler/
+/config.properties
+/resources/
+/application/

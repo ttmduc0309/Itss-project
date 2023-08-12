@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
-import data.ConnectDatabase;
+import db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Bike.Bike;
+import model.bike.Bike;
 
 public class BikePageHandler {
     @FXML

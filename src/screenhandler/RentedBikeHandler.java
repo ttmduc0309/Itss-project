@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Bike.Bike;
+import model.bike.Bike;
 
 public class RentedBikeHandler {
 

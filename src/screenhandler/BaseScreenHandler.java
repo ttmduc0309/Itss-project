@@ -17,8 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Bike.Bike;
-import model.Dock.Dock;
+import model.bike.Bike;
+import model.dock.Dock;
 
 public class BaseScreenHandler implements Initializable {
 
@@ -32,12 +32,6 @@ public class BaseScreenHandler implements Initializable {
 	 private List<Dock> dockList;
 	 @FXML
 	 private Button ViewBtn;
-	 
-	 private Bike bikeRented;
-	 
-	 private Stage stage;
-	 private Scene scene;
-	 private Parent root;
 	 
 	 
 	 @Override
@@ -58,34 +52,12 @@ public class BaseScreenHandler implements Initializable {
 			
 		}
 	 
-	 @FXML
-	 void changeToRented(ActionEvent event) {
-		 try {
-	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/RentedBike.fxml"));
-	    		root=loader.load();
-	    		RentedBikeHandler control = loader.getController();
-	    		control.setBikeRented(this.bikeRented);
-	    		
-	    		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-	    		scene = new Scene(root);
-	    		stage.setScene(scene);
-	    		stage.show();
-	    	}catch(IOException e){
-				e.printStackTrace();
-			}
-		 }
-	 
-	 public void setBikeRented(Bike bike) {
-		 this.bikeRented=bike;
-	 }
-	 
-	 
 	 List<Dock> dockList(){
 		List<Dock> ls = new ArrayList<>();
 		Dock dock = new Dock();
 		dock.setName("Dock1");
 		dock.setAddress("Tran Dai Nghia,Ha Noi");
-		dock.setArea("100m2");
+		dock.setArea(350);
 		dock.setNumOfAvailableBikes(3);
 		dock.setNumOfEmptyPoints(4);
 		dock.setDockImgSrc("/image/unnamed.png");
@@ -95,7 +67,7 @@ public class BaseScreenHandler implements Initializable {
 		dock = new Dock();
 		dock.setName("Dock2");
 		dock.setAddress("Tran Dai Nghia,Ha Noi");
-		dock.setArea("100m2");
+		dock.setArea(100);
 		dock.setNumOfAvailableBikes(3);
 		dock.setNumOfEmptyPoints(4);
 		dock.setDockImgSrc("/image/unnamed.png");

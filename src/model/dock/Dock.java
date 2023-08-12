@@ -1,14 +1,14 @@
-package model.Dock;
+package model.dock;
 
 import java.util.List;
 
-import model.Bike.Bike;
+import model.bike.Bike;
 
 public class Dock {
 	private int id;
 	private String name;
 	private String address;
-	private String area;
+	private float area;
 	private int numOfAvailableBikes;
 	private int numOfEmptyPoints;
 	private String dockImgSrc;
@@ -32,10 +32,10 @@ public class Dock {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getArea() {
+	public float getArea() {
 		return area;
 	}
-	public void setArea(String area) {
+	public void setArea(float area) {
 		this.area = area;
 	}
 	public int getNumOfAvailableBikes() {
