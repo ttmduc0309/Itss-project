@@ -13,7 +13,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="800.0" style="-fx-background-color: #90EE90;">
          <children>
-            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#changeHome" prefHeight="52.0" prefWidth="97.0" text="Go Home">
+            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#changeHome" prefHeight="52.0" prefWidth="97.0" text="Back">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
@@ -64,7 +64,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField layoutX="49.0" layoutY="284.0" prefHeight="27.0" prefWidth="574.0" promptText="Transaction Description" />
+            <TextField fx:id="transContent" layoutX="49.0" layoutY="284.0" prefHeight="27.0" prefWidth="574.0" promptText="Transaction Description" />
          </children>
       </Pane>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />

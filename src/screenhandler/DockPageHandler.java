@@ -18,7 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.beans.property.SimpleStringProperty;
@@ -42,6 +44,9 @@ public class DockPageHandler{
 	private TableColumn<Bike, String> id;
 	
 	@FXML
+    private TextField barcodeField;
+	
+	@FXML
 	private TableColumn<Bike,String> bikebtn;
 
     @FXML
@@ -49,6 +54,9 @@ public class DockPageHandler{
     
     @FXML
     private TableColumn<Bike, String> depositprice;
+    
+    @FXML
+    private Text noti;
 	 
     @FXML
     private Label DockName;
@@ -89,7 +97,7 @@ public class DockPageHandler{
 	                		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
 	                		root=loader.load();
 	                		BikePageHandler control = loader.getController();
-	                		control.setData(this.getTableRow().getItem());
+	                		control.setData(this.getTableRow().getItem(), dock);
 //	                		System.out.println(this.getTableRow().getItem());
 	                		
 	                		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -110,10 +118,12 @@ public class DockPageHandler{
 	}
 	};
     
-    public void showListBikeInDock(int dockId, String dockName) throws SQLException {
+    public void showListBikeInDock(Dock dock) throws SQLException {
+    	this.dock = dock;
     	ArrayList<Bike> bikeListInDock = new ArrayList<Bike>();
-    	bikeListInDock = BikeDAO.getListBikeInDock(dockId);
-    	DockName.setText("Dock - " + dockName);
+    	bikeListInDock = BikeDAO.getListBikeInDock(dock.getId());
+    	System.out.println(bikeListInDock);
+    	DockName.setText("Dock - " + dock.getName());
     	
     	ObservableList<Bike> bikeObservableList = FXCollections.observableArrayList(bikeListInDock);
 
@@ -152,8 +162,31 @@ public class DockPageHandler{
     }
 
 	
-
-	
-    
+    @FXML
+    void enterBarcode(ActionEvent event) {
+    	String inputCode = barcodeField.getText();
+//    	System.out.println(inputCode);
+    	try {
+    		BikeDAO bikeDAO = new BikeDAO();
+    		Bike bike = bikeDAO.findBikeByBarcode(inputCode);
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
+    		root=loader.load();
+    		BikePageHandler control = loader.getController();
+    		control.setData(bike, dock);
+//    		System.out.println(this.getTableRow().getItem());
+    		
+    		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    		scene = new Scene(root);
+    		stage.setScene(scene);
+    		stage.show();
+    		
+    	}catch(SQLException e) {
+    		noti.setText("Barcode Not Found !!!!");
+//    		e.printStackTrace();
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
 }

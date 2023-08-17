@@ -18,10 +18,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.bike.Bike;
+import model.bike.BikeDAO;
 import model.dock.Dock;
 import model.dock.DockDAO;
 
@@ -35,8 +38,12 @@ public class BaseScreenHandler implements Initializable {
 	 
 	 @FXML
 	 private List<Dock> dockList;
+	 
 	 @FXML
-	 private Button ViewBtn;
+	 private Text noti;
+	 
+	 @FXML
+	 private TextField barcodeField;
 	 
 	 private Bike bikeRented;
 	 
@@ -52,6 +59,7 @@ public class BaseScreenHandler implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println(dockList);
 			try {
 				for(int i=0;i<dockList.size();i++) {
 					FXMLLoader fxmlLoader =new FXMLLoader();
@@ -59,6 +67,7 @@ public class BaseScreenHandler implements Initializable {
 					Pane cardBox = fxmlLoader.load();
 					DockCardHandler cardController = fxmlLoader.getController();
 					cardController.setData(dockList.get(i));
+//					System.out.println(dockList.get(i));
 					cardLayout.getChildren().add(cardBox);
 				}
 			}catch(IOException e){
@@ -88,6 +97,34 @@ public class BaseScreenHandler implements Initializable {
 		 this.bikeRented=bike;
 	 }
 	 
+	 @FXML
+	 void enterBarcode(ActionEvent event) {
+		 String inputCode = barcodeField.getText();
+//	    	System.out.println(inputCode);
+	    	try {
+	    		BikeDAO bikeDAO = new BikeDAO();
+	    		Bike bike = bikeDAO.findBikeByBarcode(inputCode);
+	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
+	    		DockDAO dockDao = new DockDAO();
+	    		root=loader.load();
+	    		BikePageHandler control = loader.getController();
+	    		control.setData(bike, dockDao.findDockById(bike.getDockid()));
+//	    		System.out.println(this.getTableRow().getItem());
+	    		
+	    		
+	    		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    		scene = new Scene(root);
+	    		stage.setScene(scene);
+	    		stage.show();
+	    		
+	    	}catch(SQLException e) {
+	    		noti.setText("Barcode Not Found !!!!");
+//	    		e.printStackTrace();
+	    	} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	  }
 	 
 //	 List<Bike> bikeList(Dock dock){
 //		 List<Bike> ls = new ArrayList<>();

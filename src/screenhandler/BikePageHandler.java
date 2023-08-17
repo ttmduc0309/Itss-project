@@ -1,6 +1,7 @@
 package screenhandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.bike.Bike;
+import model.dock.Dock;
 
 public class BikePageHandler {
     @FXML
@@ -44,19 +46,32 @@ public class BikePageHandler {
     private Scene scene;
     private Parent root;
     
+    private Dock viewDock;
+    
     private Bike bike;
 
     @FXML
-    void changeHome(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("/views/MainScene.fxml"));
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+    void changeHome(ActionEvent event) {
+    	
+    	try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewDock.fxml"));
+    		root=loader.load();
+    		DockPageHandler control = loader.getController();
+    		control.showListBikeInDock(viewDock);
+    		
+    		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    		scene = new Scene(root);
+    		stage.setScene(scene);
+    		stage.show();
+    	}catch(IOException e){
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
     }
     
-    public void setData(Bike bike) {
-    	
+    public void setData(Bike bike, Dock dock) {
+    	this.viewDock = dock;
     	this.bike=bike;
 //    	Image image = new Image(getClass().getResourceAsStream(bike.getBikeImg()));
 //    	bikeImg.setImage(image);

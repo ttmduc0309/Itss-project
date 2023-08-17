@@ -34,6 +34,9 @@ public class PaymentFormHandler {
     private TextField holderName;
     
     @FXML
+    private TextField transContent;
+    
+    @FXML
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -56,6 +59,12 @@ public class PaymentFormHandler {
     		root=loader.load();
     		TransactionScreenHandler control = loader.getController();
     		control.setBikeRented(this.bikeCart);
+    		String name = holderName.getText();
+    		String cardNumber = cardNum.getText();
+    		String expiration = expireDate.getText();
+    		String cvv = cardCVV.getText();
+    		String content = transContent.getText();
+    		
     		
     		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     		scene = new Scene(root);

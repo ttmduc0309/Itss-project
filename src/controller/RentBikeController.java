@@ -19,12 +19,13 @@ public class RentBikeController {
 		dao.removeBikeFromDock(bikeId);
 	}
 	
-	public Transaction makePayment(Map<String, String> transactionPayLoad, int rentalId, int bikeId ) {
+	public Transaction makePayment(Map<String, String> transactionPayLoad, int bikeId ) {
 		String holderName = transactionPayLoad.get("holderName");
 		String cardNumber = transactionPayLoad.get("cardNumber");
 		String cvv = transactionPayLoad.get("cvv");
 		String expirationDate = transactionPayLoad.get("expirationDate");
 		String content = transactionPayLoad.get("content");
+		
 		
 //		validatePaymentDetails(holderName, cardNumber, cvv, expirationDate);
 		
@@ -41,10 +42,11 @@ public class RentBikeController {
 		return interbank.pay(card, amount, content);
 	}
 	
-	public RentalInfo createNewRentalInfo(int rentalId, int bikeId, int dockId) {
+	public RentalInfo createNewRentalInfo(int bikeId, int dockId) {
 		removeRentedBikeFromDock(bikeId);
 		
 		RentalInfo rentalInfo = new RentalInfo();
+		
 		
 		rentalInfo.setRentStartTime(Instant.now());
 		rentalInfo.setRentDockId(dockId);

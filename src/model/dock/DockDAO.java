@@ -13,6 +13,7 @@ public class DockDAO {
     	ArrayList<Dock> docksList = new ArrayList<Dock>();
     	while(result.next()) {
     		Dock dock = new Dock();
+    		dock.setId(result.getInt("id"));
     		dock.setName(result.getString("name"));
     		dock.setAddress(result.getString("address"));
     		dock.setArea(result.getFloat("area"));
@@ -33,6 +34,21 @@ public class DockDAO {
 		        }
 		}
 		return dockId;
+	}
+	
+	public Dock findDockById(int dockid) throws SQLException{
+		Statement stm = ConnectDatabase.connect().createStatement();
+		ResultSet result = stm.executeQuery("select * from docks where id = " + dockid);
+    	result.next();
+    	Dock dock = new Dock();
+		dock.setId(result.getInt("id"));
+		dock.setName(result.getString("name"));
+		dock.setAddress(result.getString("address"));
+		dock.setArea(result.getFloat("area"));
+		dock.setNumOfAvailableBikes(result.getInt("numofavailablebikes"));
+		dock.setNumOfEmptyPoints(result.getInt("numOfEmptyPoints"));
+		
+		return dock;
 	}
 	public List<Dock> getUnfilledDocks() {
 		List<Dock> docks = new ArrayList<Dock>();
