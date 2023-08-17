@@ -59,7 +59,7 @@ public class DockCardHandler  {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewDock.fxml"));
     		root=loader.load();
     		DockPageHandler control = loader.getController();
-    		control.showDockName(dockId, dockName);
+    		control.showListBikeInDock(dockId, dockName);
     		
     		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     		scene = new Scene(root);
@@ -74,7 +74,7 @@ public class DockCardHandler  {
     {
     	this.dock = dock;
 //    	Image image = new Image(getClass().getResourceAsStream(dock.getDockImgSrc()));
-//    	DockImg.setImage(image);
+//    	DockImg.setImage("");
     	
     	DockName.setText(dock.getName());
     	DockAddress.setText(dock.getAddress());

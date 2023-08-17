@@ -25,13 +25,13 @@
       </HBox>
       <Pane layoutX="43.0" layoutY="133.0" prefHeight="412.0" prefWidth="724.0">
          <children>
-            <TextField fx:id="cardNum" layoutX="49.0" layoutY="84.0" prefHeight="25.0" prefWidth="574.0" promptText="139396_GroupX_20222"/>
+            <TextField fx:id="cardNum" layoutX="49.0" layoutY="84.0" prefHeight="25.0" prefWidth="574.0" promptText="139396_GroupX_20222" />
             <Text layoutX="49.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number" wrappingWidth="107.4990234375">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="holderName" layoutX="49.0" layoutY="152.0" prefHeight="25.0" prefWidth="574.0" promptText="NGUYEN VAN A"/>
+            <TextField fx:id="holderName" layoutX="49.0" layoutY="152.0" prefHeight="25.0" prefWidth="574.0" promptText="NGUYEN VAN A" />
             <Text layoutX="49.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Holder Name">
                <font>
                   <Font size="18.0" />
@@ -42,24 +42,31 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Text>
-            <TextField fx:id="cardCVV" layoutX="49.0" layoutY="231.0" prefHeight="24.0" prefWidth="226.0" promptText="Security Code"/>
-            <Text layoutX="49.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVV">
+            <TextField fx:id="cardCVV" layoutX="49.0" layoutY="219.0" prefHeight="24.0" prefWidth="226.0" promptText="Security Code" />
+            <Text layoutX="49.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVV">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="expireDate" layoutX="336.0" layoutY="231.0" prefHeight="24.0" prefWidth="288.0" promptText="MM/YY"/>
-            <Text layoutX="336.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Date">
+            <TextField fx:id="expireDate" layoutX="336.0" layoutY="219.0" prefHeight="24.0" prefWidth="288.0" promptText="MM/YY" />
+            <Text layoutX="336.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Date">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button fx:id="checkOutBtn" layoutX="313.0" layoutY="305.0" mnemonicParsing="false" onAction="#changeSuccessRent" prefHeight="52.0" prefWidth="97.0" text="CheckOut">
+            <Button fx:id="checkOutBtn" layoutX="314.0" layoutY="346.0" mnemonicParsing="false" onAction="#changeSuccessRent" prefHeight="52.0" prefWidth="97.0" text="CheckOut">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
+            <Text layoutX="49.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Content">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField layoutX="49.0" layoutY="284.0" prefHeight="27.0" prefWidth="574.0" promptText="Transaction Description" />
          </children>
       </Pane>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    </children>
 </AnchorPane>

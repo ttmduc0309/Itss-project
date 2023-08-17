@@ -2,6 +2,7 @@ package screenhandler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -20,6 +21,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.beans.property.SimpleStringProperty;
+
 import model.bike.Bike;
 import model.bike.BikeDAO;
 import model.dock.Dock;
@@ -43,6 +46,9 @@ public class DockPageHandler{
 
     @FXML
     private TableColumn<Bike, String> biketype;
+    
+    @FXML
+    private TableColumn<Bike, String> depositprice;
 	 
     @FXML
     private Label DockName;
@@ -104,15 +110,33 @@ public class DockPageHandler{
 	}
 	};
     
-    public void showDockName(int dockId, String dockName) throws SQLException {
+    public void showListBikeInDock(int dockId, String dockName) throws SQLException {
     	ArrayList<Bike> bikeListInDock = new ArrayList<Bike>();
     	bikeListInDock = BikeDAO.getListBikeInDock(dockId);
     	DockName.setText("Dock - " + dockName);
+    	
     	ObservableList<Bike> bikeObservableList = FXCollections.observableArrayList(bikeListInDock);
+
     	id.setCellValueFactory(new PropertyValueFactory<>("Id"));
     	licensePlate.setCellValueFactory(new PropertyValueFactory<>("LicensePlate"));
     	barcode.setCellValueFactory(new PropertyValueFactory<>("BarCode"));
-    	biketype.setCellValueFactory(new PropertyValueFactory<>("TypeId"));
+//    	biketype.setCellValueFactory(new PropertyValueFactory<>("TypeId"));
+    	biketype.setCellValueFactory(cellData -> {
+            int typeId = cellData.getValue().getTypeId();
+            if (typeId == 1) {
+                return new SimpleStringProperty("standard");
+            } else if (typeId == 2) {
+                return new SimpleStringProperty("e-bike");
+            } else {
+            	return new SimpleStringProperty("twin e-bike");
+            }
+        });
+    	depositprice.setCellValueFactory(cellData -> {
+            long deposit = cellData.getValue().getDepositPrice();
+            DecimalFormat formatter = new DecimalFormat("###,###,###");
+//            String formattedDeposit = formatCurrency(deposit); // You can create a method to format the deposit
+            return new SimpleStringProperty("" + formatter.format(deposit) + "/24h");
+        });
     	bikebtn.setCellFactory(cellFactory);
     	
     	bikeTable.setItems(bikeObservableList);

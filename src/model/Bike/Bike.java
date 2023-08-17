@@ -1,18 +1,19 @@
 package model.bike;
 
-public class Bike {
-	private String id;
+public abstract class Bike {
+	private int id;
 	private String licensePlate;
 	private String barCode;
 	private boolean isBeingRented;
 	private int typeId;
 	private long price;
+	private long depositPrice;
 	private String BikeImg;
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getLicensePlate() {
@@ -50,12 +51,17 @@ public class Bike {
 		return BikeImg;
 	}
 	public void setBikeImg(String bikeImg) {
-		this.BikeImg = bikeImg;
+		BikeImg = bikeImg;
 	}
-	public void setBikeType(int i) {
-		// TODO Auto-generated method stub
-		this.typeId = i;
+	public long getDepositPrice() {
+		return depositPrice;
+	}
+	public void setDepositPrice(long depositPrice) {
+		this.depositPrice = depositPrice;
 	}
 	
-	
+	public Bike() {
+		
+	}
+	public abstract String typeString();
 }

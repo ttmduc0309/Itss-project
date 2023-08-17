@@ -43,10 +43,11 @@
                   <TableView fx:id="bikeTable" prefHeight="545.0" prefWidth="784.0">
                      <columns>
                         <TableColumn fx:id="id" prefWidth="90.0" text="BikeID" />
-                        <TableColumn fx:id="barcode" prefWidth="219.0" text="BarCode" />
-                        <TableColumn fx:id="licensePlate" prefWidth="153.0" text="LicensePlate" />
-                        <TableColumn fx:id="biketype" prefWidth="157.0" text="BikeType" />
-                        <TableColumn fx:id="bikebtn" prefWidth="141.0" text="View this bike" />
+                        <TableColumn fx:id="barcode" prefWidth="156.7999725341797" text="BarCode" />
+                        <TableColumn fx:id="licensePlate" prefWidth="128.00001525878906" text="LicensePlate" />
+                        <TableColumn fx:id="biketype" prefWidth="112.00006103515625" text="BikeType" />
+                        <TableColumn fx:id="depositprice" prefWidth="147.2000732421875" text="Deposit Price" />
+                        <TableColumn fx:id="bikebtn" prefWidth="128.0001220703125" text="View this bike" />
                      </columns>
                   </TableView>
                </content>

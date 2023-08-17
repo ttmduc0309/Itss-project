@@ -6,9 +6,90 @@ import data.ConnectDatabase;
 
 
 public class BikeDAO {
-	public static ArrayList<Bike> viewDockBike(int dockId) throws SQLException{
+	public static ArrayList<Bike> getListBikeInDock(int dockId) throws SQLException{
 		ConnectDatabase.connect();
 		Statement stm = ConnectDatabase.connect().createStatement();
-//		ResultSet result = stm.executeQuery("select * from bikes where ")
+		ResultSet result = stm.executeQuery("select * from bikes where bikes.dockid = " + dockId);
+		ArrayList<Bike> bikeList = new ArrayList<Bike>();
+		while(result.next()) {
+			Bike bike = null;
+			int type = result.getInt("typeId");
+			if (type == 1) {
+				bike = new StandardBike();
+			} else if (type == 2) {
+				bike = new StandardEBike(result.getInt("remainingBattery"));
+			} else {
+				bike = new TwinBike();
+			}
+			bike.setId(result.getInt("id"));
+			bike.setTypeId(result.getInt("typeid"));
+			bike.setLicensePlate(result.getString("licenseplate"));
+			bike.setBarCode(result.getString("barcode"));
+			bike.setDepositPrice(result.getLong("depositprice"));
+			bike.setPrice(result.getLong("rentedprice"));
+			bikeList.add(bike);
+		}
+		
+		return bikeList;
+	}
+	
+	public Bike getBikeById(int bikeId) {
+		Bike bike = null;
+		try {
+			Statement stm = ConnectDatabase.connect().createStatement();
+			ResultSet result = stm.executeQuery("SELECT * FROM bikes WHERE id = " + bikeId);
+			result.next();
+			int type = result.getInt("typeId");
+			if (type == 1) {
+				bike = new StandardBike();
+			} else if (type == 2) {
+				bike = new StandardEBike(result.getInt("remainingBattery"));
+			} else {
+				bike = new TwinBike();
+			}
+			
+			bike.setId(result.getInt("id"));
+			bike.setLicensePlate(result.getString("licensePlate"));
+			bike.setBarCode(result.getString("barCode"));
+			bike.setBeingRented(result.getBoolean("isBeingRented"));
+			bike.setTypeId(result.getInt("typeId"));
+			bike.setPrice(result.getLong("price"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return bike;
+	}
+	
+	public String getBikeTypeName(int typeId) {
+		String typeName = "";
+		try {
+			Statement stm = ConnectDatabase.connect().createStatement();
+			ResultSet result = stm.executeQuery("SELECT name FROM bike_types WHERE id = " + typeId);
+			result.next();
+			typeName = result.getString("name");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return typeName;
+	}
+	
+	public void addBikeToDock(int bikeId, int dockId) {
+		try {
+			Statement stm = ConnectDatabase.connect().createStatement();
+			stm.executeUpdate("UPDATE bikes SET dockId = " + dockId + " where id = " + bikeId);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeBikeFromDock(int bikeId) {
+		try {
+			Statement stm = ConnectDatabase.connect().createStatement();
+			stm.executeUpdate("UPDATE bikes SET dockId = null where id = " + bikeId);
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

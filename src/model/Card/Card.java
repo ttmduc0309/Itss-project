@@ -54,4 +54,5 @@ public class Card {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
+	public Card() {}
 }
