@@ -30,39 +30,39 @@
             <Image url="@../image/bikeimg.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="300.0" layoutY="128.0" prefHeight="433.0" prefWidth="471.0">
+      <Pane layoutX="301.0" layoutY="142.0" prefHeight="433.0" prefWidth="471.0">
          <children>
             <Label layoutX="23.0" layoutY="21.0" text="Bike Information">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Text layoutX="23.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike ID:">
+            <Text layoutX="23.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike ID:">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text layoutX="23.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Type:">
+            <Text layoutX="23.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Type:">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="bikeID" layoutX="105.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+            <Text fx:id="bikeID" layoutX="106.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="bikeType" layoutX="128.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standard_bike">
+            <Text fx:id="bikeType" layoutX="128.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standard_bike">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text layoutX="23.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="License Plate:">
+            <Text layoutX="23.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="License Plate:">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="plateNum" layoutX="157.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="42034032740">
+            <Text fx:id="plateNum" layoutX="157.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="42034032740">
                <font>
                   <Font size="20.0" />
                </font>
@@ -72,16 +72,6 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Text layoutX="23.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rented Time:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="timeRented" layoutX="157.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00 AM">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
          </children>
       </Pane>
    </children>

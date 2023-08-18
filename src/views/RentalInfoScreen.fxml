@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screenhandler.TransactionScreenHandler">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screenhandler.RentalInfoScreenHandler">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="800.0" style="-fx-background-color: #90EE90;">
          <children>
-            <Label fx:id="notification" contentDisplay="CENTER" text="Success !!">
+            <Label fx:id="notification" contentDisplay="CENTER" text="Rental Summary">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>
@@ -26,7 +26,7 @@
       </HBox>
       <Pane layoutY="110.0" prefHeight="493.0" prefWidth="800.0">
          <children>
-            <Button fx:id="returnBtn" layoutX="356.0" layoutY="335.0" mnemonicParsing="false" onAction="#changeReturnScreen" prefHeight="63.0" prefWidth="88.0" text="Next">
+            <Button fx:id="proceedBtn" layoutX="300.0" layoutY="341.0" mnemonicParsing="false" onAction="#changeToPayment" prefHeight="63.0" prefWidth="202.0" text="Proceed to Payment">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Button>
@@ -34,7 +34,7 @@
                <children>
                   <HBox prefHeight="66.0" prefWidth="362.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction ID:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bike ID:">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -42,7 +42,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Text>
-                        <Text fx:id="transactionID" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text fx:id="bikeId" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -51,7 +51,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="66.0" prefWidth="362.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Amount:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Return Dock ID:">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -59,7 +59,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Text>
-                        <Text fx:id="amount" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text fx:id="returnDockId" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -71,7 +71,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="171.0" prefHeight="66.0" prefWidth="362.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time: ">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rent Start Time:">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -79,7 +79,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Text>
-                        <Text fx:id="timeCreated" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text fx:id="rentStartTime" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -89,9 +89,9 @@
                         </Text>
                      </children>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+                  <HBox layoutX="10.0" layoutY="114.0" prefHeight="66.0" prefWidth="362.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Content:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rent End Time:">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -99,10 +99,53 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Text>
-                        <Text fx:id="content" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text fx:id="rentEndTime" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="135.0" prefHeight="66.0" prefWidth="362.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit Amount:">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="depositAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="203.0" prefHeight="66.0" prefWidth="362.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rental Fee:">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="rentalFee" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </Text>
                      </children>
                   </HBox>

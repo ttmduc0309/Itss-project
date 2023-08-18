@@ -15,7 +15,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="800.0" style="-fx-background-color: #90EE90;">
          <children>
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#changeHome" prefHeight="52.0" prefWidth="90.0" text="Go Back">
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#changeHome" prefHeight="52.0" prefWidth="90.0" text="Back">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
@@ -35,7 +35,7 @@
                         <TableColumn fx:id="barcode" prefWidth="156.7999725341797" text="BarCode" />
                         <TableColumn fx:id="licensePlate" prefWidth="128.00001525878906" text="LicensePlate" />
                         <TableColumn fx:id="biketype" prefWidth="112.00006103515625" text="BikeType" />
-                        <TableColumn fx:id="depositprice" prefWidth="147.2000732421875" text="Deposit Price" />
+                        <TableColumn fx:id="price" prefWidth="147.2000732421875" text="Price" />
                         <TableColumn fx:id="bikebtn" prefWidth="128.0001220703125" text="View this bike" />
                      </columns>
                   </TableView>

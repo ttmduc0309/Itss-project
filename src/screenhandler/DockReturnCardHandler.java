@@ -52,9 +52,6 @@ public class DockReturnCardHandler  {
 
     @FXML
     void changeScene(ActionEvent event) throws SQLException {
-    	String dockName = DockName.getText();
-    	int dockId = DockDAO.findDockId(dockName);
-    	System.out.println(dockId);
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/PaymentForm.fxml"));
     		root=loader.load();

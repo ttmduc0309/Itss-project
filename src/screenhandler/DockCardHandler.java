@@ -52,14 +52,10 @@ public class DockCardHandler  {
 
     @FXML
     void changeScene(ActionEvent event) throws SQLException {
-    	String dockName = DockName.getText();
-    	int dockId = DockDAO.findDockId(dockName);
-    	System.out.println(dockId);
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewDock.fxml"));
     		root=loader.load();
     		DockPageHandler control = loader.getController();
-    		System.out.println(this.dock.getId());
     		control.showListBikeInDock(this.dock);
     		
     		stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -22,7 +22,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
-            <Button fx:id="viewBtn" mnemonicParsing="false" onAction="#changeRentedBike" prefHeight="48.0" prefWidth="134.0" text="View bike rented">
+            <Button fx:id="viewBtn" mnemonicParsing="false" onAction="#changeRentedBike" prefHeight="48.0" prefWidth="134.0" text="View rented bike">
                <HBox.margin>
                   <Insets left="400.0" />
                </HBox.margin>

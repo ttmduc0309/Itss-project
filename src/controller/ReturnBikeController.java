@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
@@ -29,7 +30,7 @@ public class ReturnBikeController {
 		// get rental info
 		RentalInfo rentalInfo = riDao.getRentalInfoById(rentalId);
 		rentalInfo.setReturnDockId(dockId);
-		rentalInfo.setRentEndTime(Instant.now());
+		rentalInfo.setRentEndTime(Timestamp.from(Instant.now()));
 		
 		// calculate rental fee
 		long rentalFee = calculateRentalFee(rentalInfo.getRentStartTime(), rentalInfo.getRentEndTime(), bikeId);
@@ -40,39 +41,7 @@ public class ReturnBikeController {
 		return rentalInfo;
 	}
 	
-	public Transaction makePayment(Map<String, String> transactionPayload, int rentalId) throws InvalidPaymentDetailsException {
-		String holderName = transactionPayload.get("holderName");
-		String cardNumber = transactionPayload.get("cardNumber");
-		String cvv = transactionPayload.get("cvv");
-		String expirationDate = transactionPayload.get("expirationDate");
-		String content = transactionPayload.get("content");
-		
-		validatePaymentDetails(holderName, cardNumber, cvv, expirationDate);
-		
-		Card card = new Card();
-		card.setCardHolderName(holderName);
-		card.setCardNumber(cardNumber);
-		card.setSecurityCode(cvv);
-		card.setExpirationDate(expirationDate);
-		
-		InterbankInterface interbank = new InterbankSubsystem();
-		
-		long amount = calculateAmount(rentalId);
-		if (amount >= 0) {
-			return interbank.pay(card, amount, content);
-		} else {
-			return interbank.refund(card, amount, content);
-		}
-	}
 	
-	private void validatePaymentDetails(String holderName, String cardNumber, String cvv, String expirationDate) throws InvalidPaymentDetailsException {
-		CardValidator cardValidator = new CardValidator();
-		cardValidator.validateCardHolderName(holderName);
-		cardValidator.validateCardNumber(cardNumber);
-		cardValidator.validateSecurityCode(cvv);
-		cardValidator.validateExpirationDate(expirationDate);
-		return;
-	}
 	
 	private void addRentedBikeToNewDock(int bikeId, int dockId) {
 		BikeDAO bikeDao = new BikeDAO();
@@ -80,8 +49,8 @@ public class ReturnBikeController {
 		bikeDao.addBikeToDock(bikeId, dockId);
 	}
 	
-	private long calculateRentalFee(Instant startTime, Instant endTime, int bikeId) {
-		Duration duration = Duration.between(startTime, endTime);
+	private long calculateRentalFee(Timestamp startTime, Timestamp endTime, int bikeId) {
+		Duration duration = Duration.between(startTime.toInstant(), endTime.toInstant());
 		long minutes = duration.toMinutes();
 		long amount;
 		
@@ -101,11 +70,4 @@ public class ReturnBikeController {
 		return (long) (amount * 1.5);
 	}
 	
-	private long calculateAmount(int rentalId) {
-		RentalInfoDAO riDao = new RentalInfoDAO();
-		
-		RentalInfo rentalInfo = riDao.getRentalInfoById(rentalId);
-		
-		return rentalInfo.getRentalFee() - rentalInfo.getDepositAmount();
-	}
 }

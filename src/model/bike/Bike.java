@@ -7,7 +7,7 @@ public abstract class Bike {
 	private boolean isBeingRented;
 	private int typeId;
 	private long price;
-	private long depositPrice;
+	private int dockId;
 	private String BikeImg;
 	
 	public int getId() {
@@ -53,15 +53,18 @@ public abstract class Bike {
 	public void setBikeImg(String bikeImg) {
 		BikeImg = bikeImg;
 	}
-	public long getDepositPrice() {
-		return depositPrice;
-	}
-	public void setDepositPrice(long depositPrice) {
-		this.depositPrice = depositPrice;
-	}
 	
+	public int getDockId() {
+		return dockId;
+	}
+	public void setDockId(int dockId) {
+		this.dockId = dockId;
+	}
+
 	public Bike() {
 		
 	}
+
 	public abstract String typeString();
+	
 }

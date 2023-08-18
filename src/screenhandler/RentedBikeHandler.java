@@ -10,10 +10,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.bike.Bike;
+import model.rentalInfo.RentalInfo;
 
 public class RentedBikeHandler {
 
@@ -34,9 +36,6 @@ public class RentedBikeHandler {
 
     @FXML
     private Text plateNum;
-
-    @FXML
-    private Text timeRented;
     
    @FXML
     private Stage stage;
@@ -44,13 +43,19 @@ public class RentedBikeHandler {
     private Parent root;
     
     private Bike rentedBike;
-    
-    
+    private RentalInfo rentalInfo;
 
     @FXML
     void changeHome(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("/views/MainScene.fxml"));
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ReturnScreen.fxml"));
+		root=loader.load();
+		ReturnScreenHandler control = loader.getController();
+		control.setBikeRented(this.rentedBike);
+		control.setRentalInfo(this.rentalInfo);
+		control.initReturnScreen();
+		
+		
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -58,6 +63,20 @@ public class RentedBikeHandler {
     
     void setBikeRented(Bike bike) {
     	this.rentedBike=bike;
+    	bikeID.setText("" + this.rentedBike.getId());
+    	bikeType.setText(this.rentedBike.typeString());
+    	plateNum.setText(this.rentedBike.getLicensePlate());
+    	if(this.rentedBike.getTypeId() == 1) {
+    		bikeImg.setImage(new Image(getClass().getResourceAsStream("/image/bikeimg.jpg")));
+    	}else if(this.rentedBike.getTypeId() == 2) {
+    		bikeImg.setImage(new Image(getClass().getResourceAsStream("/image/ebike.jpg")));
+    	}else {
+    		bikeImg.setImage(new Image(getClass().getResourceAsStream("/image/twinbike.jpg")));
+    	}
+    }
+    
+    void setRentalInfo(RentalInfo rentalInfo) {
+    	this.rentalInfo = rentalInfo;
     }
 
 }

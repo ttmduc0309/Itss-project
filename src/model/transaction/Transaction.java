@@ -1,12 +1,12 @@
 package model.transaction;
 
-import java.time.Instant;
+import java.sql.Timestamp;
 
 public class Transaction {
 	private int id;
 	private Long amount;
 	private String content;
-	private Instant timeCreated;
+	private Timestamp timeCreated;
 	
 	public int getId() {
 		return id;
@@ -26,10 +26,10 @@ public class Transaction {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Instant getTimeCreated() {
+	public Timestamp getTimeCreated() {
 		return timeCreated;
 	}
-	public void setTimeCreated(Instant timeCreated) {
+	public void setTimeCreated(Timestamp timeCreated) {
 		this.timeCreated = timeCreated;
 	}
 }

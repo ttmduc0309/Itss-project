@@ -53,7 +53,7 @@ public class DockPageHandler{
     private TableColumn<Bike, String> biketype;
     
     @FXML
-    private TableColumn<Bike, String> depositprice;
+    private TableColumn<Bike, String> price;
     
     @FXML
     private Text noti;
@@ -98,7 +98,6 @@ public class DockPageHandler{
 	                		root=loader.load();
 	                		BikePageHandler control = loader.getController();
 	                		control.setData(this.getTableRow().getItem(), dock);
-//	                		System.out.println(this.getTableRow().getItem());
 	                		
 	                		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	                		scene = new Scene(root);
@@ -122,7 +121,6 @@ public class DockPageHandler{
     	this.dock = dock;
     	ArrayList<Bike> bikeListInDock = new ArrayList<Bike>();
     	bikeListInDock = BikeDAO.getListBikeInDock(dock.getId());
-    	System.out.println(bikeListInDock);
     	DockName.setText("Dock - " + dock.getName());
     	
     	ObservableList<Bike> bikeObservableList = FXCollections.observableArrayList(bikeListInDock);
@@ -130,7 +128,6 @@ public class DockPageHandler{
     	id.setCellValueFactory(new PropertyValueFactory<>("Id"));
     	licensePlate.setCellValueFactory(new PropertyValueFactory<>("LicensePlate"));
     	barcode.setCellValueFactory(new PropertyValueFactory<>("BarCode"));
-//    	biketype.setCellValueFactory(new PropertyValueFactory<>("TypeId"));
     	biketype.setCellValueFactory(cellData -> {
             int typeId = cellData.getValue().getTypeId();
             if (typeId == 1) {
@@ -141,11 +138,11 @@ public class DockPageHandler{
             	return new SimpleStringProperty("twin e-bike");
             }
         });
-    	depositprice.setCellValueFactory(cellData -> {
-            long deposit = cellData.getValue().getDepositPrice();
+    	price.setCellValueFactory(cellData -> {
+            long deposit = cellData.getValue().getPrice();
             DecimalFormat formatter = new DecimalFormat("###,###,###");
 //            String formattedDeposit = formatCurrency(deposit); // You can create a method to format the deposit
-            return new SimpleStringProperty("" + formatter.format(deposit) + "/24h");
+            return new SimpleStringProperty("" + formatter.format(deposit) + "VND");
         });
     	bikebtn.setCellFactory(cellFactory);
     	
@@ -165,15 +162,13 @@ public class DockPageHandler{
     @FXML
     void enterBarcode(ActionEvent event) {
     	String inputCode = barcodeField.getText();
-//    	System.out.println(inputCode);
     	try {
     		BikeDAO bikeDAO = new BikeDAO();
-    		Bike bike = bikeDAO.findBikeByBarcode(inputCode);
+    		Bike bike = bikeDAO.getBikeByBarcode(inputCode);
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
     		root=loader.load();
     		BikePageHandler control = loader.getController();
     		control.setData(bike, dock);
-//    		System.out.println(this.getTableRow().getItem());
     		
     		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     		scene = new Scene(root);

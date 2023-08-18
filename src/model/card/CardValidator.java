@@ -5,23 +5,26 @@ import java.time.YearMonth;
 import common.exception.*;
 
 public class CardValidator {
-	public void validateCardHolderName(String holderName) throws InvalidCardHolderNameException, NullCardHolderNameException {
+	public void validateRequiredFields(String holderName, String cardNumber, String cvv, String expirationDate) throws NullCardHolderNameException,
+	NullCardNumberException, NullExpirationDateException, NullSecurityCodeException {
 		if (holderName == null || holderName.isBlank()) throw new NullCardHolderNameException();
-		if (!holderName.matches("^[a-zA-Z]+$")) throw new InvalidCardHolderNameException();
+		if (cardNumber == null || cardNumber.isBlank()) throw new NullCardNumberException();
+		if (cvv == null || cvv.isBlank()) throw new NullSecurityCodeException();
+		if (expirationDate == null || expirationDate.isBlank()) throw new NullExpirationDateException();
+	}
+	public void validateCardHolderName(String holderName) throws InvalidCardHolderNameException, NullCardHolderNameException {
+		if (!holderName.matches("^[a-zA-Z ]+$")) throw new InvalidCardHolderNameException();
 	}
 	
 	public void validateCardNumber(String cardNumber) throws InvalidCardNumberException, NullCardNumberException {
-		if (cardNumber == null || cardNumber.isBlank()) throw new NullCardNumberException();
 		if (!cardNumber.matches("^[a-zA-Z0-9_]+$")) throw new InvalidCardNumberException();
 	}
 	
 	public void validateSecurityCode(String cvv) throws InvalidSecurityCodeException, NullSecurityCodeException {
-		if (cvv == null || cvv.isBlank()) throw new NullSecurityCodeException();
 		if (cvv.length() != 3 || !cvv.matches("^[0-9]+$")) throw new InvalidSecurityCodeException();
 	}
 	
 	public void validateExpirationDate(String expirationDate) throws InvalidExpirationDateException, NullExpirationDateException{
-		if (expirationDate == null || expirationDate.isBlank()) throw new NullExpirationDateException();
 		// format MM/YY
 		if (!expirationDate.matches("^(0[1-9]|1[0-2])/(\\d{2})$")) {
 			throw new InvalidExpirationDateException();

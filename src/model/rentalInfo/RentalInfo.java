@@ -1,6 +1,6 @@
 package model.rentalInfo;
 
-import java.time.Instant;
+import java.sql.Timestamp;
 
 public class RentalInfo {
 	private int id;
@@ -9,8 +9,8 @@ public class RentalInfo {
 	private int returnDockId;
 	private long depositAmount;
 	private long rentalFee;
-	private Instant rentStartTime;
-	private Instant rentEndTime;
+	private Timestamp rentStartTime;
+	private Timestamp rentEndTime;
 	
 	public RentalInfo() {}
 	
@@ -50,16 +50,16 @@ public class RentalInfo {
 	public void setRentalFee(long rentalFee) {
 		this.rentalFee = rentalFee;
 	}
-	public Instant getRentStartTime() {
+	public Timestamp getRentStartTime() {
 		return rentStartTime;
 	}
-	public void setRentStartTime(Instant rentStartTime) {
+	public void setRentStartTime(Timestamp rentStartTime) {
 		this.rentStartTime = rentStartTime;
 	}
-	public Instant getRentEndTime() {
+	public Timestamp getRentEndTime() {
 		return rentEndTime;
 	}
-	public void setRentEndTime(Instant rentEndTime) {
+	public void setRentEndTime(Timestamp rentEndTime) {
 		this.rentEndTime = rentEndTime;
 	}
 }

@@ -59,7 +59,6 @@ public class BaseScreenHandler implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(dockList);
 			try {
 				for(int i=0;i<dockList.size();i++) {
 					FXMLLoader fxmlLoader =new FXMLLoader();
@@ -67,7 +66,6 @@ public class BaseScreenHandler implements Initializable {
 					Pane cardBox = fxmlLoader.load();
 					DockCardHandler cardController = fxmlLoader.getController();
 					cardController.setData(dockList.get(i));
-//					System.out.println(dockList.get(i));
 					cardLayout.getChildren().add(cardBox);
 				}
 			}catch(IOException e){
@@ -100,18 +98,16 @@ public class BaseScreenHandler implements Initializable {
 	 @FXML
 	 void enterBarcode(ActionEvent event) {
 		 String inputCode = barcodeField.getText();
-//	    	System.out.println(inputCode);
 	    	try {
 	    		BikeDAO bikeDAO = new BikeDAO();
-	    		Bike bike = bikeDAO.findBikeByBarcode(inputCode);
-	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
 	    		DockDAO dockDao = new DockDAO();
+	    		Bike bike = bikeDAO.getBikeByBarcode(inputCode);
+	    		
+	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
 	    		root=loader.load();
 	    		BikePageHandler control = loader.getController();
-	    		control.setData(bike, dockDao.findDockById(bike.getDockid()));
-//	    		System.out.println(this.getTableRow().getItem());
-	    		
-	    		
+	    		control.setData(bike, dockDao.findDockById(bike.getDockId()));
+
 	    		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	    		scene = new Scene(root);
 	    		stage.setScene(scene);
@@ -126,36 +122,6 @@ public class BaseScreenHandler implements Initializable {
 			}
 	  }
 	 
-//	 List<Bike> bikeList(Dock dock){
-//		 List<Bike> ls = new ArrayList<>();
-//		 Bike bike =new Bike();
-//		 bike.setId("1");
-//		 bike.setBarCode("4740312401240712");
-//		 bike.setPrice(400000);
-//		 bike.setLicensePlate("4740312401240712");
-//		 bike.setBikeType(1);
-//		 bike.setBikeImg("/image/ebike.jpg");
-//		 ls.add(bike);
-//		 
-//		 bike =new Bike();
-//		 bike.setId("2");
-//		 bike.setBarCode("4027402-481-284");
-//		 bike.setPrice(100000);
-//		 bike.setLicensePlate("4740312401240712");
-//		 bike.setBikeType(2);
-//		 bike.setBikeImg("/image/bikeimg.jpg");
-//		 ls.add(bike);
-//		 
-//		 bike =new Bike();
-//		 bike.setId("3");
-//		 bike.setBarCode("047041741");
-//		 bike.setPrice(100000);
-//		 bike.setLicensePlate("4740312401240712");
-//		 bike.setBikeType(3);
-//		 bike.setBikeImg("/image/bikeimg.jpg");
-//		 ls.add(bike);
-//		 
-//		 return ls;
-//	 }
+
 	
 }

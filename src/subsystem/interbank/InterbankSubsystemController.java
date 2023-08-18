@@ -1,5 +1,6 @@
 package subsystem.interbank;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 
 import model.card.Card;
@@ -13,7 +14,7 @@ public class InterbankSubsystemController {
 		Transaction transaction = new Transaction();
 		transaction.setAmount(amount);
 		transaction.setContent(content);
-		transaction.setTimeCreated(Instant.now());
+		transaction.setTimeCreated(Timestamp.from(Instant.now()));
 		
 		TransactionDAO transactionDao = new TransactionDAO();
 		int transactionId = transactionDao.saveTransaction(transaction);
@@ -27,7 +28,7 @@ public class InterbankSubsystemController {
 		Transaction transaction = new Transaction();
 		transaction.setAmount(amount);
 		transaction.setContent(content);
-		transaction.setTimeCreated(Instant.now());
+		transaction.setTimeCreated(Timestamp.from(Instant.now()));
 		
 		TransactionDAO transactionDao = new TransactionDAO();
 		int transactionId = transactionDao.saveTransaction(transaction);
