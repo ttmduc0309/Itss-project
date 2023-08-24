@@ -50,7 +50,6 @@ public class BikeDAO {
 			bike.setId(result.getInt("id"));
 			bike.setLicensePlate(result.getString("licensePlate"));
 			bike.setBarCode(result.getString("barCode"));
-			bike.setBeingRented(result.getBoolean("isBeingRented"));
 			bike.setTypeId(result.getInt("typeId"));
 			bike.setPrice(result.getLong("price"));
 		} catch (SQLException e) {
@@ -64,23 +63,22 @@ public class BikeDAO {
 		Bike bike = null;
 		Statement stm = ConnectDatabase.connect().createStatement();
 		ResultSet result = stm.executeQuery("SELECT * FROM bikes WHERE barcode = '" + barcode + "'");
-		result.next();
-		int type = result.getInt("typeId");
-		if (type == 1) {
-			bike = new StandardBike();
-		} else if (type == 2) {
-			bike = new StandardEBike(result.getInt("remainingBattery"));
-		} else {
-			bike = new TwinBike();
+		if (result.next()) {
+			int type = result.getInt("typeId");
+			if (type == 1) {
+				bike = new StandardBike();
+			} else if (type == 2) {
+				bike = new StandardEBike(result.getInt("remainingBattery"));
+			} else {
+				bike = new TwinBike();
+			}
+			
+			bike.setId(result.getInt("id"));
+			bike.setLicensePlate(result.getString("licensePlate"));
+			bike.setBarCode(result.getString("barCode"));
+			bike.setTypeId(result.getInt("typeId"));
+			bike.setPrice(result.getLong("price"));
 		}
-		
-		bike.setId(result.getInt("id"));
-		bike.setLicensePlate(result.getString("licensePlate"));
-		bike.setBarCode(result.getString("barCode"));
-		bike.setBeingRented(result.getBoolean("isBeingRented"));
-		bike.setTypeId(result.getInt("typeId"));
-		bike.setPrice(result.getLong("price"));
-		
 		return bike;
 	}
 	
@@ -101,7 +99,7 @@ public class BikeDAO {
 	public void addBikeToDock(int bikeId, int dockId) {
 		try {
 			Statement stm = ConnectDatabase.connect().createStatement();
-			stm.executeUpdate("UPDATE bikes SET dockId = " + dockId + ", isBeingRented = FALSE where id = " + bikeId);
+			stm.executeUpdate("UPDATE bikes SET dockId = " + dockId + " where id = " + bikeId);
 			stm.executeUpdate("UPDATE docks SET numOfAvailableBikes = numOfAvailableBikes + 1,"
 					+ " numOfEmptyPoints = numOfEmptyPoints - 1 WHERE id = " + dockId);
 		} catch(SQLException e) {
@@ -112,7 +110,7 @@ public class BikeDAO {
 	public void removeBikeFromDock(int bikeId, int dockId) {
 		try {
 			Statement stm = ConnectDatabase.connect().createStatement();
-			stm.executeUpdate("UPDATE bikes SET dockId = null, isBeingRented = TRUE where id = " + bikeId);
+			stm.executeUpdate("UPDATE bikes SET dockId = null where id = " + bikeId);
 			stm.executeUpdate("UPDATE docks SET numOfAvailableBikes = numOfAvailableBikes - 1,"
 					+ " numOfEmptyPoints = numOfEmptyPoints + 1 WHERE id = " + dockId);
 		}catch (SQLException e) {

@@ -74,11 +74,11 @@ public class PaymentFormHandler {
     
     @FXML
     void changeHome(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("/views/MainScene.fxml"));
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+    		root = FXMLLoader.load(getClass().getResource("/views/MainScene.fxml"));
+    		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    		scene = new Scene(root);
+    		stage.setScene(scene);
+    		stage.show();
     }
     
     @FXML
@@ -112,7 +112,7 @@ public class PaymentFormHandler {
     			control.setReturning();
     		}
     		
-    		
+    		btnHome.setVisible(true);
     		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     		scene = new Scene(root);
     		stage.setScene(scene);
@@ -159,6 +159,7 @@ public class PaymentFormHandler {
     }
     
     public void setReturning() {
+    	btnHome.setVisible(false);
     	this.returning = true;
     }
     

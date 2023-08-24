@@ -102,6 +102,10 @@ public class BaseScreenHandler implements Initializable {
 	    		BikeDAO bikeDAO = new BikeDAO();
 	    		DockDAO dockDao = new DockDAO();
 	    		Bike bike = bikeDAO.getBikeByBarcode(inputCode);
+	    		if (bike == null) {
+	    			System.out.println(inputCode);
+	    			throw new SQLException();
+	    		}
 	    		
 	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
 	    		root=loader.load();
@@ -115,7 +119,7 @@ public class BaseScreenHandler implements Initializable {
 	    		
 	    	}catch(SQLException e) {
 	    		noti.setText("Barcode Not Found !!!!");
-//	    		e.printStackTrace();
+	    		e.printStackTrace();
 	    	} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -72,8 +72,8 @@ public class ReturnDockCardHandler {
     	this.rentalInfo = rentalInfo;
     	DockName.setText(dock.getName());
     	DockAddress.setText(dock.getAddress());
-    	DockArea.setText("" + dock.getArea());
-    	DockBikeNum.setText("The number of available bikes: "+ dock.getNumOfAvailableBikes());
-    	DockEmptyPoints.setText("The number of empty points: "+ dock.getNumOfEmptyPoints());
+    	DockArea.setText("Area: " + dock.getArea());
+    	DockBikeNum.setText("Number of available bikes: "+ dock.getNumOfAvailableBikes());
+    	DockEmptyPoints.setText("Number of empty points: "+ dock.getNumOfEmptyPoints());
     }
 }

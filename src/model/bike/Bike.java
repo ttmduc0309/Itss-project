@@ -4,7 +4,6 @@ public abstract class Bike {
 	private int id;
 	private String licensePlate;
 	private String barCode;
-	private boolean isBeingRented;
 	private int typeId;
 	private long price;
 	private int dockId;
@@ -27,12 +26,6 @@ public abstract class Bike {
 	}
 	public void setBarCode(String barCode) {
 		this.barCode = barCode;
-	}
-	public boolean isBeingRented() {
-		return isBeingRented;
-	}
-	public void setBeingRented(boolean isBeingRented) {
-		this.isBeingRented = isBeingRented;
 	}
 	public int getTypeId() {
 		return typeId;
