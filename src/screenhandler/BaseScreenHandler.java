@@ -99,18 +99,23 @@ public class BaseScreenHandler implements Initializable {
 	 void enterBarcode(ActionEvent event) {
 		 String inputCode = barcodeField.getText();
 	    	try {
+	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
+	    		root=loader.load();
+	    		
 	    		BikeDAO bikeDAO = new BikeDAO();
 	    		DockDAO dockDao = new DockDAO();
 	    		Bike bike = bikeDAO.getBikeByBarcode(inputCode);
 	    		if (bike == null) {
-	    			System.out.println(inputCode);
 	    			throw new SQLException();
 	    		}
 	    		
-	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
-	    		root=loader.load();
+	
 	    		BikePageHandler control = loader.getController();
-	    		control.setData(bike, dockDao.findDockById(bike.getDockId()));
+	    		Dock dock = dockDao.findDockById(bike.getDockId());
+	    		if (dock == null) {
+	    			throw new SQLException();
+	    		}
+	    		control.setData(bike, dock);
 
 	    		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	    		scene = new Scene(root);
@@ -119,7 +124,7 @@ public class BaseScreenHandler implements Initializable {
 	    		
 	    	}catch(SQLException e) {
 	    		noti.setText("Barcode Not Found !!!!");
-	    		e.printStackTrace();
+	    		//e.printStackTrace();
 	    	} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

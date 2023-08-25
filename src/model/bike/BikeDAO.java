@@ -50,6 +50,7 @@ public class BikeDAO {
 			bike.setId(result.getInt("id"));
 			bike.setLicensePlate(result.getString("licensePlate"));
 			bike.setBarCode(result.getString("barCode"));
+			bike.setDockId(result.getInt("dockId"));
 			bike.setTypeId(result.getInt("typeId"));
 			bike.setPrice(result.getLong("price"));
 		} catch (SQLException e) {
@@ -76,6 +77,7 @@ public class BikeDAO {
 			bike.setId(result.getInt("id"));
 			bike.setLicensePlate(result.getString("licensePlate"));
 			bike.setBarCode(result.getString("barCode"));
+			bike.setDockId(result.getInt("dockId"));
 			bike.setTypeId(result.getInt("typeId"));
 			bike.setPrice(result.getLong("price"));
 		}

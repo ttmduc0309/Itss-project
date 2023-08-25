@@ -44,9 +44,6 @@ public class DockPageHandler{
 	private TableColumn<Bike, String> id;
 	
 	@FXML
-    private TextField barcodeField;
-	
-	@FXML
 	private TableColumn<Bike,String> bikebtn;
 
     @FXML
@@ -63,9 +60,6 @@ public class DockPageHandler{
     
     @FXML
     private Button btnBack;
-    
-    @FXML
-    private Button rentBtn;
     
     @FXML
     private Stage stage;
@@ -156,32 +150,6 @@ public class DockPageHandler{
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-    }
-
-	
-    @FXML
-    void enterBarcode(ActionEvent event) {
-    	String inputCode = barcodeField.getText();
-    	try {
-    		BikeDAO bikeDAO = new BikeDAO();
-    		Bike bike = bikeDAO.getBikeByBarcode(inputCode);
-    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
-    		root=loader.load();
-    		BikePageHandler control = loader.getController();
-    		control.setData(bike, dock);
-    		
-    		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    		scene = new Scene(root);
-    		stage.setScene(scene);
-    		stage.show();
-    		
-    	}catch(SQLException e) {
-    		noti.setText("Barcode Not Found !!!!");
-//    		e.printStackTrace();
-    	} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
 
 }
