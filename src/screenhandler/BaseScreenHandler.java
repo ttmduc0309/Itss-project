@@ -2,10 +2,14 @@ package screenhandler;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import data.ConnectDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,11 +18,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Bike.Bike;
-import model.Dock.Dock;
+import model.bike.Bike;
+import model.bike.BikeDAO;
+import model.dock.Dock;
+import model.dock.DockDAO;
 
 public class BaseScreenHandler implements Initializable {
 
@@ -30,8 +38,12 @@ public class BaseScreenHandler implements Initializable {
 	 
 	 @FXML
 	 private List<Dock> dockList;
+	 
 	 @FXML
-	 private Button ViewBtn;
+	 private Text noti;
+	 
+	 @FXML
+	 private TextField barcodeField;
 	 
 	 private Bike bikeRented;
 	 
@@ -39,10 +51,14 @@ public class BaseScreenHandler implements Initializable {
 	 private Scene scene;
 	 private Parent root;
 	 
-	 
 	 @Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
-			dockList = new ArrayList<>(dockList());
+			try {
+				dockList = new ArrayList<Dock>(DockDAO.requestData());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			try {
 				for(int i=0;i<dockList.size();i++) {
 					FXMLLoader fxmlLoader =new FXMLLoader();
@@ -79,62 +95,42 @@ public class BaseScreenHandler implements Initializable {
 		 this.bikeRented=bike;
 	 }
 	 
+	 @FXML
+	 void enterBarcode(ActionEvent event) {
+		 String inputCode = barcodeField.getText();
+	    	try {
+	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
+	    		root=loader.load();
+	    		
+	    		BikeDAO bikeDAO = new BikeDAO();
+	    		DockDAO dockDao = new DockDAO();
+	    		Bike bike = bikeDAO.getBikeByBarcode(inputCode);
+	    		if (bike == null) {
+	    			throw new SQLException();
+	    		}
+	    		
+	
+	    		BikePageHandler control = loader.getController();
+	    		Dock dock = dockDao.findDockById(bike.getDockId());
+	    		if (dock == null) {
+	    			throw new SQLException();
+	    		}
+	    		control.setData(bike, dock);
+
+	    		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    		scene = new Scene(root);
+	    		stage.setScene(scene);
+	    		stage.show();
+	    		
+	    	}catch(SQLException e) {
+	    		noti.setText("Barcode Not Found !!!!");
+	    		//e.printStackTrace();
+	    	} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	  }
 	 
-	 List<Dock> dockList(){
-		List<Dock> ls = new ArrayList<>();
-		Dock dock = new Dock();
-		dock.setDockName("Dock1");
-		dock.setDockAddress("Tran Dai Nghia,Ha Noi");
-		dock.setDockArea("100m2");
-		dock.setDockNumBike(3);
-		dock.setDockEmptyPoints(4);
-		dock.setDockImgSrc("/image/unnamed.png");
-		dock.setBikeList(bikeList(dock));
-		ls.add(dock);
-		
-		dock = new Dock();
-		dock.setDockName("Dock2");
-		dock.setDockAddress("Tran Dai Nghia,Ha Noi");
-		dock.setDockArea("100m2");
-		dock.setDockNumBike(3);
-		dock.setDockEmptyPoints(4);
-		dock.setDockImgSrc("/image/unnamed.png");
-		dock.setBikeList(bikeList(dock));
-		ls.add(dock);
-		
-		return ls;
-	 }
-	 
-	 List<Bike> bikeList(Dock dock){
-		 List<Bike> ls = new ArrayList<>();
-		 Bike bike =new Bike();
-		 bike.setBikeID("1");
-		 bike.setBarCode("4740312401240712");
-		 bike.setPrice(400000);
-		 bike.setLicensePlate("4740312401240712");
-		 bike.setBikeType(1);
-		 bike.setBikeImg("/image/ebike.jpg");
-		 ls.add(bike);
-		 
-		 bike =new Bike();
-		 bike.setBikeID("2");
-		 bike.setBarCode("4027402-481-284");
-		 bike.setPrice(100000);
-		 bike.setLicensePlate("4740312401240712");
-		 bike.setBikeType(2);
-		 bike.setBikeImg("/image/bikeimg.jpg");
-		 ls.add(bike);
-		 
-		 bike =new Bike();
-		 bike.setBikeID("3");
-		 bike.setBarCode("047041741");
-		 bike.setPrice(100000);
-		 bike.setLicensePlate("4740312401240712");
-		 bike.setBikeType(3);
-		 bike.setBikeImg("/image/bikeimg.jpg");
-		 ls.add(bike);
-		 
-		 return ls;
-	 }
+
 	
 }

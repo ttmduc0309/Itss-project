@@ -1,6 +1,7 @@
 package screenhandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Dock.Dock;
+import model.dock.Dock;
+import model.dock.DockDAO;
 
 public class DockCardHandler  {
 	
@@ -39,6 +41,7 @@ public class DockCardHandler  {
     @FXML
     private Button viewBtn;
     
+    
     @FXML
     private Stage stage;
     private Scene scene;
@@ -48,12 +51,12 @@ public class DockCardHandler  {
     
 
     @FXML
-    void changeScene(ActionEvent event) {
+    void changeScene(ActionEvent event) throws SQLException {
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewDock.fxml"));
     		root=loader.load();
     		DockPageHandler control = loader.getController();
-    		control.showDockName(dock);
+    		control.showListBikeInDock(this.dock);
     		
     		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     		scene = new Scene(root);
@@ -67,14 +70,14 @@ public class DockCardHandler  {
     public void setData(Dock dock) 
     {
     	this.dock = dock;
-    	Image image = new Image(getClass().getResourceAsStream(dock.getDockImgSrc()));
-    	DockImg.setImage(image);
+//    	Image image = new Image(getClass().getResourceAsStream(dock.getDockImgSrc()));
+//    	DockImg.setImage("");
     	
-    	DockName.setText(dock.getDockName());
-    	DockAddress.setText(dock.getDockAddress());
-    	DockArea.setText(dock.getDockArea());
-    	DockBikeNum.setText("The number of available bikes: "+ dock.getDockNumBike());
-    	DockEmptyPoints.setText("The number of empty points: "+ dock.getDockEmptyPoints());
+    	DockName.setText(dock.getName());
+    	DockAddress.setText(dock.getAddress());
+    	DockArea.setText("Area: " + dock.getArea());
+    	DockBikeNum.setText("Number of available bikes: "+ dock.getNumOfAvailableBikes());
+    	DockEmptyPoints.setText("Number of empty points: "+ dock.getNumOfEmptyPoints());
     }
 
 }

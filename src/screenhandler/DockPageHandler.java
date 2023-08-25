@@ -1,6 +1,9 @@
 package screenhandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,11 +18,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.Bike.Bike;
-import model.Dock.Dock;
+import javafx.beans.property.SimpleStringProperty;
+
+import model.bike.Bike;
+import model.bike.BikeDAO;
+import model.dock.Dock;
 
 public class DockPageHandler{
 	
@@ -40,15 +48,18 @@ public class DockPageHandler{
 
     @FXML
     private TableColumn<Bike, String> biketype;
+    
+    @FXML
+    private TableColumn<Bike, String> price;
+    
+    @FXML
+    private Text noti;
 	 
     @FXML
     private Label DockName;
     
     @FXML
     private Button btnBack;
-    
-    @FXML
-    private Button rentBtn;
     
     @FXML
     private Stage stage;
@@ -80,7 +91,7 @@ public class DockPageHandler{
 	                		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewBike.fxml"));
 	                		root=loader.load();
 	                		BikePageHandler control = loader.getController();
-	                		control.setData(this.getTableRow().getItem());
+	                		control.setData(this.getTableRow().getItem(), dock);
 	                		
 	                		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	                		scene = new Scene(root);
@@ -100,17 +111,36 @@ public class DockPageHandler{
 	}
 	};
     
-    public void showDockName(Dock dock) {
+    public void showListBikeInDock(Dock dock) throws SQLException {
     	this.dock = dock;
-    	this.DockName.setText(this.dock.getDockName());
+    	ArrayList<Bike> bikeListInDock = new ArrayList<Bike>();
+    	bikeListInDock = BikeDAO.getListBikeInDock(dock.getId());
+    	DockName.setText("Dock - " + dock.getName());
     	
-    	list=FXCollections.observableArrayList(this.dock.getBikeList());
-    	id.setCellValueFactory(new PropertyValueFactory<Bike,String>("BikeID"));
-    	licensePlate.setCellValueFactory(new PropertyValueFactory<Bike,String>("LicensePlate"));
-    	barcode.setCellValueFactory(new PropertyValueFactory<Bike,String>("BarCode"));
-    	biketype.setCellValueFactory(new PropertyValueFactory<Bike,String>("BikeType"));
+    	ObservableList<Bike> bikeObservableList = FXCollections.observableArrayList(bikeListInDock);
+
+    	id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+    	licensePlate.setCellValueFactory(new PropertyValueFactory<>("LicensePlate"));
+    	barcode.setCellValueFactory(new PropertyValueFactory<>("BarCode"));
+    	biketype.setCellValueFactory(cellData -> {
+            int typeId = cellData.getValue().getTypeId();
+            if (typeId == 1) {
+                return new SimpleStringProperty("standard");
+            } else if (typeId == 2) {
+                return new SimpleStringProperty("e-bike");
+            } else {
+            	return new SimpleStringProperty("twin e-bike");
+            }
+        });
+    	price.setCellValueFactory(cellData -> {
+            long deposit = cellData.getValue().getPrice();
+            DecimalFormat formatter = new DecimalFormat("###,###,###");
+//            String formattedDeposit = formatCurrency(deposit); // You can create a method to format the deposit
+            return new SimpleStringProperty("" + formatter.format(deposit) + "VND");
+        });
     	bikebtn.setCellFactory(cellFactory);
-    	bikeTable.setItems(list);
+    	
+    	bikeTable.setItems(bikeObservableList);
     }
     
     @FXML
@@ -121,10 +151,5 @@ public class DockPageHandler{
 		stage.setScene(scene);
 		stage.show();
     }
-
-	
-
-	
-    
 
 }

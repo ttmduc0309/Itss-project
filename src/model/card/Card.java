@@ -1,4 +1,4 @@
-package model.Card;
+package model.card;
 
 public class Card {
 	private String cardHolderName;
@@ -54,4 +54,5 @@ public class Card {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
+	public Card() {}
 }

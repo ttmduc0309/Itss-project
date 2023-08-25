@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screenhandler.ReturnScreenHandler">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="800.0" style="-fx-background-color: #90EE90;">
+         <children>
+            <Label contentDisplay="CENTER" text="Return Bike">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+            <Button fx:id="viewBtn" mnemonicParsing="false" onAction="#changeRentedBike" prefHeight="48.0" prefWidth="134.0" text="View rented bike">
+               <HBox.margin>
+                  <Insets left="400.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Pane fx:id="pageContainer" layoutY="110.0" prefHeight="493.0" prefWidth="800.0">
+         <children>
+            <ScrollPane layoutY="2.0" prefHeight="493.0" prefWidth="800.0">
+               <content>
+                  <VBox fx:id="cardLayout" prefHeight="575.0" prefWidth="785.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

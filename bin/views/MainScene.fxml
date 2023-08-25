@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screenhandler.BaseScreenHandler">
    <children>
@@ -23,19 +24,23 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
-            <TextField prefHeight="25.0" prefWidth="371.0">
+            <VBox prefHeight="112.0" prefWidth="507.0">
+               <children>
+                  <TextField fx:id="barcodeField" prefHeight="8.0" prefWidth="324.0" promptText="Enter Barcode">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Text fx:id="noti" strokeType="OUTSIDE" strokeWidth="0.0" text="Input the barcode - 123456789101" />
+               </children>
+               <padding>
+                  <Insets top="40.0" />
+               </padding>
                <HBox.margin>
-                  <Insets left="20.0" />
+                  <Insets left="10.0" right="10.0" />
                </HBox.margin>
-            </TextField>
-            <Button fx:id="ViewBtn" mnemonicParsing="false" onAction="#changeToRented" text="View">
-               <HBox.margin>
-                  <Insets left="40.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Button>
+            </VBox>
+            <Button fx:id="rentBtn" mnemonicParsing="false" onAction="#enterBarcode" prefHeight="41.0" prefWidth="77.0" text="Rent" />
          </children>
       </HBox>
       <Pane fx:id="pageContainer" layoutY="110.0" prefHeight="493.0" prefWidth="800.0">
